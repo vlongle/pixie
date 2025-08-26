@@ -1,0 +1,62 @@
+{
+    "opacity_threshold": 0.02,
+    "rotation_degree": [
+        0
+    ],
+    "rotation_axis": [
+        0
+    ],
+    "fix_ground": false,
+    "substep_dt": 1e-4,
+    "frame_dt": 4e-2,
+    "frame_num": 50,
+    "nu": 0.3,
+    "E": 1000,
+    "material": "jelly",
+    "density": 50,
+    "g": [
+        0,
+        0,
+        -9.8
+    ],
+    "grid_v_damping_scale": 0.999,
+    "rpic_damping": 0.05,
+    "boundary_conditions": [
+        {
+            "type": "surface_collider",
+            "point": [
+                1,
+                1,
+                0.02
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "surface": "separate",
+            "friction": 0.1,
+            "start_time": 0,
+            "end_time": 1e3
+        }
+    ],
+    "mpm_space_vertical_upward_axis": [
+        0,
+        0,
+        1
+    ],
+    "mpm_space_viewpoint_center": [
+        0.95,
+        1.07,
+        1
+    ],
+    "default_camera_index": 0,
+    "show_hint": false,
+    "init_azimuthm": -120,
+    "init_elevation": 0,
+    "init_radius": 4.11,
+    "move_camera": false,
+    "delta_a": 0.4,
+    "delta_e": 0.0,
+    "delta_r": 0.0
+}

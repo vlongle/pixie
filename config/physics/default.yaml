@@ -1,0 +1,12 @@
+# Physics simulation parameters
+render_img: true
+compile_video: true
+debug: false
+white_bg: true  # Default, can be overridden based on material mode and obj_class
+save_ply: true ## if true, create ply_files folder and save ply files for each frame
+
+# Sample selection
+sample_id: 0  # Which sample to use for physics simulation (0, 1, 2, etc.)
+
+# Object classes that don't use white background
+no_white_bg_classes: ["snow_and_mud"] 

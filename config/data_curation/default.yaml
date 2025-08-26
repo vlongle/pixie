@@ -1,0 +1,41 @@
+# Data Curation Configuration
+# Configuration for objaverse object selection and categorization
+
+# Object selection parameters
+objaverse_selection:
+  top_k: 500  # Number of top objects to select per category
+  batch_size: 128  # Batch size for encoding object names
+  # Model configuration
+  model:
+    name: "all-MiniLM-L6-v2"  # Sentence transformer model to use
+
+# Download parameters
+download:
+  max_objs_per_class: null  # Maximum number of objects to download per class (null = download all)
+  obj_class: null  # Specific object class to download (null = download all categories)
+  processes: null  # Number of processes for downloading (null = use CPU count)
+
+# Rendering parameters
+rendering:
+  max_objs_per_class: null  # Maximum number of objects to render per class (null = render all)
+  obj_class: null  # Specific object class to render (null = render all categories)
+  num_gpus: 1  # Number of GPUs to use for rendering
+  jobs_per_gpu: 1  # Number of rendering jobs to run per GPU
+  resolution: 400  # Resolution of rendered images
+  views: 1  # Number of views to render per object
+  timeout: 120  # Timeout in seconds for each render job
+  skip_existing: true  # Skip objects that have already been rendered
+
+# VLM data filtering parameters
+vlm_filtering:
+  obj_class: null  # Specific object class to filter (null = filter all)
+  num_workers: null  # Number of parallel workers (null = use CPU count)
+  overwrite: false  # Overwrite existing results
+  model_name: "gemini-2.0-flash-exp"  # VLM model to use
+  analyze_only: false  # Only analyze existing results without running VLM
+
+# Manual data filtering correction parameters
+manual_correction:
+  obj_class: null  # Specific object class to correct (required)
+  input_file: "all_results.json"  # Input file name (without path)
+  output_file: "all_results_corrected.json"  # Output file name (without path)

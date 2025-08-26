@@ -1,0 +1,4 @@
+plyfile==1.0.3
+pymeshlab==2023.12.post1
+taichi==1.5.0
+warp_lang==0.10.1

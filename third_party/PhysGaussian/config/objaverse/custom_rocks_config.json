@@ -1,0 +1,68 @@
+{
+    "opacity_threshold": 0.02,
+    "rotation_degree": [
+        0
+    ],
+    "rotation_axis": [
+        0
+    ],
+    "substep_dt": 1e-5,
+    "frame_dt": 1e-2,
+    "frame_num": 200,
+    "E": 1e9,
+    "yield_stress": 8e6,
+    "nu": 0.22,
+    "material": "rock_brittle",
+    "softening": 0.05,
+    "grid_v_damping_scale": 0.9999,
+    "density": 2700,
+    "g": [
+        0.0,
+        0.0,
+        -9.8
+    ],
+    "particle_filling": {
+        "n_grid": 100,
+        "density_threshold": 100.0,
+        "search_threshold": 1.0,
+        "search_exclude_direction": 2,
+        "ray_cast_direction": 4,
+        "max_particles_num": 2000000,
+        "max_partciels_per_cell": 1,
+        "boundary": [
+            0.4,
+            1.6,
+            0.4,
+            1.6,
+            0.4,
+            1.6
+        ],
+        "smooth": true,
+        "visualize": true
+    },
+    "n_grid": 120,
+    "boundary_conditions": [
+        {
+            "type": "bounding_box"
+        }
+    ],
+    "mpm_space_vertical_upward_axis": [
+        0,
+        -1,
+        0
+    ],
+    "mpm_space_viewpoint_center": [
+        1,
+        1,
+        1
+    ],
+    "default_camera_index": 9,
+    "show_hint": false,
+    "init_azimuthm": 150,
+    "init_elevation": 10,
+    "init_radius": 2.7,
+    "move_camera": false,
+    "delta_a": 0.04,
+    "delta_e": 0.0,
+    "delta_r": 0.00
+}

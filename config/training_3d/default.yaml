@@ -1,0 +1,11 @@
+# NeRF training parameters
+nerf:
+  method: "f3rm"
+  max_iterations: 5_000
+  disable_scene_contraction: true
+  save_only_latest_checkpoint: false
+  quit_on_completion: true
+
+# Gaussian Splatting training parameters
+gaussian_splatting:
+  max_iterations: 10_000  # Direct specification of GS training iterations 

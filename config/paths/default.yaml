@@ -1,0 +1,62 @@
+# Base paths
+# null -> use current directory
+# project_root: null ## for current directory like config
+base_path: null ## for everything else. On the cluster, we store data and model on a different mnt
+
+
+# Data directories
+data_dir: "${paths.base_path}/data"
+
+# Output directories
+outputs_dir: "${paths.base_path}/models" ## storing gs and f3rm
+render_outputs_dir: "${paths.base_path}/render_outputs" ## storing voxelize grids
+physgaussian_output_dir: "${paths.base_path}/mpm_sim_outputs" ## storing mp4 simulation results
+normalization_stats_dir: "${paths.base_path}/normalization_stats" ## storing dataset statistics and normalization ranges
+
+# Training checkpoint directories
+discrete_checkpoint_dir: "${paths.base_path}/checkpoints_discrete" ## storing discrete segmentation model checkpoints
+continuous_checkpoint_dir: "${paths.base_path}/checkpoints_continuous_mse" ## storing continuous regression model checkpoints
+
+# Third-party directories
+third_party_dir: "third_party"
+physgaussian_dir: "${paths.third_party_dir}/PhysGaussian"
+gaussian_splatting_dir: "${paths.physgaussian_dir}/gaussian-splatting"
+wavelet_generation_dir: "${paths.third_party_dir}/Wavelet-Generation"
+
+# neural network inference
+inference_results_dir: null
+
+# VLM labeling directories
+vlm_base_path: "${paths.base_path}/vlm_results"
+vlm_seg_mat_sample_results_dir: "${paths.vlm_base_path}/vlm_seg_mat_sample_results"
+vlm_seg_results_dir: "${paths.vlm_base_path}/vlm_seg_results"
+vlm_seg_critic_results_dir: "${paths.vlm_base_path}/vlm_seg_critic_results"
+
+# Object metadata mapping
+# Path to a JSON file that contains object metadata including class information
+# Format: {"obj_id": {"obj_class": "class_name", "vlm_filtering": {...}}, ...}
+obj_metadata_path: "config/obj_ids_metadata.json"  # Default metadata file
+
+# Physics Configuration directories
+physgaussian_config_dir: "config"
+
+# Data curation paths
+data_curation_dir: "${paths.base_path}/data_curation"
+category_dict_path: "${paths.data_curation_dir}/cat_dict.json"  # Path to category dictionary file
+final_dataset_path: "${paths.data_curation_dir}/new_final_dataset.pkl"  # Output file for final dataset
+render_outputs_base_dir: "${paths.base_path}/class_render_outputs"  # Base directory for rendered outputs
+vlm_filtering_results_dir: "${paths.base_path}/vlm_data_filtering_results"  # VLM filtering results
+
+# Blender paths
+# Set to null for system blender or specific path for custom installation
+blender_path: "blender"
+
+blender_nerf_addon_path: "/home/vlongle/code/pixie/BlenderNeRF-main-custom.zip"
+blender_gs_addon_path: "/home/vlongle/code/pixie/blender-addon.zip"
+
+blender_output_dir: "${paths.base_path}/blender_outputs"
+
+# Blender scene file for rendering
+blend_file_path: "pixie/blender/empty_scene.blend"
+
+

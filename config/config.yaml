@@ -1,0 +1,25 @@
+defaults:
+  - _self_
+  - paths: default
+  - data_rendering: default
+  - output_rendering: default
+  - training_3d: default
+  - training: default
+  - voxelization: default
+  - segmentation: default
+  - physics: default
+  - data_curation: default
+  - mapping: default
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+# Main object configuration
+obj_id: null  # Required: Objaverse object ID to process
+obj_path: null  # Optional: Path to the object file to process
+obj_class: null  # Auto-detected from obj_id
+
+# Pipeline control
+overwrite: false
+overwrite_voxel: false
+material_mode: "vlm"  # "vlm" or "neural"
+is_objaverse_object: true

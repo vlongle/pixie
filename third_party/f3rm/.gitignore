@@ -1,0 +1,24 @@
+*.egg-info
+
+.idea/
+__pycache__/
+*.py[cod]
+
+**/.DS_Store
+.env
+
+# Build output
+dist/
+
+# Output of demo extract features script
+**/demo_extract_features.png
+**/demo_clip_features*.png
+
+# Datasets
+datasets/
+
+# Nerfstudio outputs
+outputs/
+f3rm_outputs/
+**data/
+**outputs/

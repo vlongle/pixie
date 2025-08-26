@@ -1,0 +1,70 @@
+[project]
+name = "f3rm"
+version = "0.0.6"
+description = "F3RM: Feature Fields for Robotic Manipulation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+keywords = ["nerf", "feature-fields", "robotics"]
+authors = [
+    { name = "William Shen", email = "willshen@csail.mit.edu" },
+    { name = "Ge Yang", email = "geyang@csail.mit.edu" },
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "einops",
+    "ftfy",
+    "gdown",
+    "matplotlib",
+    # Last release before v1.0.0 which breaks things
+    #"nerfstudio==0.3.4",
+    "numpy",
+    "pillow",
+    "regex",
+    "torchtyping",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+]
+robot = [
+    "open3d",
+    "params-proto",
+    "PyMCubes",
+    "python-slugify",
+    "viser",
+]
+
+[tool.black]
+line-length = 120
+
+[project.urls]
+"Homepage" = "https://f3rm.csail.mit.edu"
+"Source" = "https://github.com/f3rm/f3rm"
+
+[project.entry-points."nerfstudio.method_configs"]
+f3rm = "f3rm.f3rm_config:f3rm_method"
+
+[project.scripts]
+f3rm-download-data = "f3rm.scripts.download_datasets:main"
+f3rm-optimize = "f3rm_robot.optimize:entrypoint"
+
+[tool.setuptools.packages]
+find = { include = ["f3rm", "f3rm.*", "f3rm_robot", "f3rm_robot.*"] }
+
+[tool.setuptools.package-data]
+"f3rm.scripts.images" = ["*.png"]  # images for demo CLIP and DINO features
+"f3rm.features.clip" = ["bpe_simple_vocab_16e6.txt.gz", "README.md"]  # CLIP assets
+"f3rm_robot" = ["README.md"]
+"f3rm_robot.assets" = ["panda_gripper_visual.obj", "tasks/*.pt"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,6 @@
+[submodule "external/Manifold"]
+	path = external/Manifold
+	url = https://github.com/hjwdzh/Manifold.git
+[submodule "external/mesh_to_sdf"]
+	path = external/mesh_to_sdf
+	url = https://github.com/edward1997104/mesh_to_sdf.git

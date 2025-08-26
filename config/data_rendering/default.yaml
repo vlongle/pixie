@@ -1,0 +1,9 @@
+# Blender rendering parameters
+num_images: 200
+camera_dist_min: 1.2
+camera_dist_max: 1.8
+transparent_bg: true
+scene_scale: 1.0
+
+# Output format
+format: "NGP" 

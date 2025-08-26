@@ -1,0 +1,16 @@
+
+# Input paths
+pred_path: null  # Path to prediction numpy array (required)
+mask_path: null  # Path to mask numpy array (required)
+grid_feature_path: null  # Path to original voxel grid metadata (.npz file) (required)
+
+# Output paths
+output_path: null  # Path to save the PLY file (required)
+world_output_path: null  # Optional: Path to save the world frame PLY file
+
+# Object information
+obj_id: null  # Object ID (required)
+
+# Optional paths
+dataparser_path: null  # Optional: Path to dataparser_transforms.json file, used for mapping nerf to world space coordinate
+## for real-scene. For objaverse, nerf == world

@@ -1,0 +1,46 @@
+render:
+  - nerf
+  - gs
+  - blender_glb
+  - blender_gs
+
+nerf_render:
+  split: test
+  rendered_output_names: rgb
+
+blender_render_glb:
+  features:
+    - part_label
+    - material_id
+    - E
+    - density
+    - nu
+  cmaps:
+    - turbo
+    - turbo
+    - turbo
+    - turbo
+    - turbo
+  rotate_video: true
+  focal_length: null
+  views: 25 ## how many views to render for 360 degree rotation
+  default_fps: 30
+  camera_id: 4
+
+blender_render_gs:
+  init_xyz: [0.0, 0.0, 0.0]  # Initial XYZ translation
+  xyz_rotation: [0.0, 0.0, 0.0]  # XYZ rotation in degrees
+  place_on_ground: true  # Whether to automatically place object on ground
+  focal_length_ratio: null  # Ratio to scale focal length
+  bg_color: null  # Background color (RGB or RGBA)
+  transparent: false  # Enable transparent background
+  resolution_x: null  # Render resolution X
+  resolution_y: null  # Render resolution Y
+  cycles_samples: 16 # Number of Cycles render samples
+  num_renders: null  # Number of renders to do
+  start_frame: 0  # Start frame to render
+  is_dropping: false  # Whether to drop object on ground
+  save_blend: false  # Save blend file for each frame
+  rotate_around: 30 # Degrees of orbit per frame (if null, uses 360/total_frames)
+  camera_id: 4
+  default_fps: 30

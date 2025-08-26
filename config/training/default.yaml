@@ -1,0 +1,150 @@
+
+# Shared configuration parameters (consistent across normalization, training, inference)
+enforce_mask_consistency: true
+background_id: 7        # Material ID for background voxels
+default_grid_size: 64   # Expected voxel grid size
+in_material_channels: 4    # Number of material property channels (density, E, nu, material_id)
+# Feature configuration - change this to switch between feature types
+feature_type: "clip"  # Options: "clip", "rgb", "occupancy"
+
+target_obj_classes: null
+to_normalize: true
+num_cont_channels: 3        # density, log‑E, ν
+num_material_classes: 8     # K in one‑hot
+sample_id: 0
+# data_material_channels: 11 # e.g., 8 + 3, transformed in_material_channels
+# to data_material_channels
+
+## to be automatically set by `inspect_ranges.py`
+density_min: null
+density_max: null
+E_min: null
+E_max: null
+nu_min: null
+nu_max: null
+
+# Feature-specific configurations
+features:
+  clip:
+    feature_channels: 768
+    cond_dim: 32
+  rgb:
+    feature_channels: 3
+    cond_dim: 32
+  occupancy:
+    feature_channels: 1
+    cond_dim: 32
+
+# Automatically set values based on feature_type using Hydra interpolation
+feature_channels: ${training.features.${training.feature_type}.feature_channels}
+cond_dim: ${training.features.${training.feature_type}.cond_dim}
+
+
+
+normalization:
+  # Configuration for range computation
+  reservoir_cap: 2000000  # Maximum samples to keep for percentile computation
+  clip_feature_channels: 768
+
+
+training:
+  # my_config.yaml
+  debug_base_folder: "../debug"
+
+
+  interval: 1
+  first_k: null
+  mix_precision: true
+
+  batch_size: 4
+  lr: 1e-4
+  lr_decay: true
+  lr_decay_feq: 500
+  lr_decay_rate: 0.998
+  data_worker: 4
+  beta1: 0.9
+  beta2: 0.999
+  optimizer_name: "Adam"       # store by name, we'll reconstruct later
+
+  # network
+  resolution: 256
+  padding_mode: "zero"
+  wavelet_type: "bior6.8"
+  use_dense_conv: true
+  use_gradient_clip: false
+  gradient_clip_value: 1.0
+  use_instance_norm: true
+  use_instance_affine: true
+  use_layer_norm: false
+  use_layer_affine: false
+  train_with_gt_coeff: true
+
+  # diffusion setting
+  diffusion_step: 1000
+  diffusion_model_var_type: "FIXED_SMALL"
+  diffusion_learn_sigma: false
+  diffusion_sampler: "uniform"
+  diffusion_model_mean_type: "EPSILON"
+  diffusion_rescale_timestep: false
+  diffusion_loss_type: "MSE"
+  diffusion_beta_schedule: "linear"
+  diffusion_scale_ratio: 1.0
+  unet_model_channels: 64
+  unet_num_res_blocks: 3
+  unet_channel_mult: [1, 1, 2, 4]
+  unet_channel_mult_low: [1, 2, 2, 2]
+  unet_activation: null
+  attention_resolutions: []
+
+  # resume
+  starting_epoch: 0
+  training_epochs: 300
+  special_symbol: ""
+  network_resume_path: null
+  optimizer_resume_path: null
+  discriminator_resume_path: null
+  discriminator_opt_resume_path: null
+  exp_idx: 0
+
+  seed: 69
+  train_size: 0.9
+  # other stuff
+  # 0‑6 objects, 7 = background
+
+  ## evaluation tracking 
+  step_factor: 10 ## for diffusing de-sampling
+  use_ddim: true
+  evaluation_interval: 10
+  saving_intervals: 10
+
+  # loss weights
+  lambda_cont: 1.0
+  lambda_cat:  2.0            # start here; tune if needed
+
+  ## data specific stuff
+
+  # ----- scaling -------------------------------------------------
+  # IMPORTANT: Normalization ranges are dynamically loaded from saved statistics.
+  # You MUST run: python third_party/Wavelet-Generation/data_utils/inspect_ranges.py
+  # to compute actual ranges from your dataset before training.
+  # 
+  # The ranges will be loaded from: {normalization_stats_dir}/normalization_ranges.yaml
+  # No hard-coded fallback values are provided to ensure data-driven normalization.
+
+  # wandb / checkpoint resume
+  resume_checkpoint: null
+  resume_dir: null
+  wandb_api_key: null  # Set your wandb API key here or use WANDB_API_KEY environment variable
+  wandb_run_id: null
+
+
+
+inference:
+  # inference parameters
+  CONT_EPOCH: -1  # -1 for latest checkpoint, or specific epoch number
+  SEG_EPOCH: -1   # -1 for latest checkpoint, or specific epoch number
+  steps_factor: 10  # Factor for faster inference
+  use_ddim: true   # Use DDIM sampler for inference
+  batch_size: 4
+  data_worker: 4
+  use_saved_test_split: false
