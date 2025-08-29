@@ -11,13 +11,13 @@
   <a href="https://arxiv.org/abs/2508.17437">
     <img alt="Arxiv paper link" src="https://img.shields.io/badge/arxiv-2508.17437-blue">
   </a>
-    <a href="https://huggingface.co/datasets/vlongle/pixie/tree/main">
+    <!-- <a href="https://huggingface.co/datasets/vlongle/pixie/tree/main">
     <img alt="Model Checkpoints link" src="https://img.shields.io/badge/%F0%9F%A4%97%20HF-Models-yellow">
   </a>
   <a href="https://opensource.org/licenses/MIT">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
-  </a>
-  <a href="TODO">
+  </a> -->
+  <a href="https://x.com/LongLeRobot/status/1961139689886552481">
     <img alt="Twitter Thread" src="https://img.shields.io/badge/Twitter-Thread-1DA1F2">
   </a>
 </p>
